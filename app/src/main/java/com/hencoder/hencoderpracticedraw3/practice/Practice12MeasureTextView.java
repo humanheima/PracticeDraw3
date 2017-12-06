@@ -6,14 +6,19 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 public class Practice12MeasureTextView extends View {
+
+    private static final String TAG = "Practice12MeasureTextVi";
+
     Paint paint1 = new Paint(Paint.ANTI_ALIAS_FLAG);
     Paint paint2 = new Paint(Paint.ANTI_ALIAS_FLAG);
     String text1 = "三个月内你胖了";
     String text2 = "4.5";
     String text3 = "公斤";
+    float width1, width2;
 
     public Practice12MeasureTextView(Context context) {
         super(context);
@@ -40,7 +45,11 @@ public class Practice12MeasureTextView extends View {
         // 使用 Paint.measureText 测量出文字宽度，让文字可以相邻绘制
 
         canvas.drawText(text1, 50, 200, paint1);
-        canvas.drawText(text2, 50 + 100, 200, paint2);
-        canvas.drawText(text3, 50 + 200, 200, paint1);
+        width1 = paint1.measureText(text1);
+        Log.e(TAG, "width1=" + width1);
+        canvas.drawText(text2, 50 + width1, 200, paint2);
+        width2 = paint2.measureText(text2);
+        Log.e(TAG, "width2=" + width2);
+        canvas.drawText(text3, 50 + width1+width2, 200, paint1);
     }
 }

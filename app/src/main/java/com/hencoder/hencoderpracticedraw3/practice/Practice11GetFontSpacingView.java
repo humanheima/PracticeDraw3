@@ -5,9 +5,12 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 public class Practice11GetFontSpacingView extends View {
+
+    private static final String TAG = "Practice11GetFontSpacin";
     Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
     String text = "Hello HenCoder";
 
@@ -33,7 +36,8 @@ public class Practice11GetFontSpacingView extends View {
 
         // 使用 Paint.getFontSpacing() 来获取推荐的行距
         float spacing = 20;
-
+        spacing = paint.getFontSpacing();
+        Log.e(TAG, "spacing=" + spacing);
         canvas.drawText(text, 50, 100, paint);
 
         canvas.drawText(text, 50, 100 + spacing, paint);
